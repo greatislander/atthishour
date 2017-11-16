@@ -1,0 +1,25 @@
+body {
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+a {
+  text-decoration: underline;
+}
+
+.container {
+  min-height: 100vh;
+}
+
+.video {
+  background-image: url('../images/council.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 480px;
+  width: 640px;
+}
+
+.ticker {
+  font-family: 'IBM Plex Mono', monospace;
+  overflow: hidden;
+  white-space: nowrap;
+}
