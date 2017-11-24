@@ -1,5 +1,5 @@
 body {
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
 }
 
 a {
@@ -10,16 +10,56 @@ a {
   min-height: 100vh;
 }
 
-.video {
-  background-image: url('../images/council.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 480px;
+.screen {
+  position: relative;
+  width: 960px;
+  height: 424px;
+}
+
+.screen header {
+  position: absolute;
   width: 640px;
+  top: 0;
+  z-index: 1917;
+}
+
+.screen .plyr {
+  display: absolute;
+  width: 640px;
+  top: 0;
+  left: 0;
+}
+
+.screen footer {
+  position: absolute;
+  width: 640px;
+  bottom: 0;
+  z-index: 1917;
+}
+
+.screen aside {
+  height: 424px;
+  width: 320px;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .ticker {
-  font-family: 'IBM Plex Mono', monospace;
-  overflow: hidden;
-  white-space: nowrap;
+  font-family: "IBM Plex Mono", monospace;
+}
+
+@media all and (orientation: portrait) {
+  .rotate {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 30em) {
+}
+
+@media screen and (min-width: 30em) and (max-width: 60em) {
+}
+
+@media screen and (min-width: 60em) {
 }

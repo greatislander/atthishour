@@ -1,6 +1,11 @@
 extends layout
 
 block content    
-  section.video.flex.flex-column.justify-end
-    h1.bg-dark-red.white.tr.i.ttu.pr3.pv2.mb0= title
-    div.ticker.ttu.black.bg-white.h2.w-100.mb2.ph2.flex.flex-row.items-center.justify-end.overflow-hidden
+  section.screen
+    header
+      h1.bg-dark-red.white.tr.i.ttu.pr3.pv2.mv0= title
+    div(data-type="youtube" data-video-id="3pUjLkcxdow" data-plyr='{ "autoplay": true, "loop": true, "volume": 1 }')
+    aside.bg-white.black
+      p.twitter.ph3
+    footer.h3.ph3.black.bg-white.flex.flex-column.justify-center
+      p.lh-copy.tc.ttu.f7

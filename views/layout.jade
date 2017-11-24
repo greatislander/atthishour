@@ -1,15 +1,37 @@
-doctype html
-html(lang='en-ca')
+
+doctype
+html.no-js(lang='en-ca')
   head
-    title= title
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    title
+    meta(name='description', content='')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
     link(rel='stylesheet', href='/styles/atthishour.css')
     link(rel='stylesheet', href='https://unpkg.com/tachyons@4.9.0/css/tachyons.min.css')
     link(rel='stylesheet', href='https://unpkg.com/@ibm/type@0.5.0/css/ibm-type.min.css')
-    
-    
+    link(rel='stylesheet', href='https://unpkg.com/plyr@2.0.18/dist/plyr.css')
+   //-script(src='javascripts/vendor/modernizr-2.7.1.min.js')
   body.bg-black.white
+    <!--[if lt IE 8]>
+    p.browsehappy
+      | You are using an <strong>outdated</strong> browser.
+      | Please <a href="http://browsehappy.com/">upgrade your browser</a>
+      | to improve your experience.
+    <![endif]-->
+
     div.container.flex.flex-column.justify-center.items-center
       block content
-  footer
+
+    script(src='https://unpkg.com/plyr@2.0.18/src/js/plyr.js')
     script(src='https://unpkg.com/malarkey@1.3.3/index.js')
     script(src='/scripts/atthishour.js')
+    //- Google Analytics: change UA-XXXXX-X to be your site's ID.
+        //-
+          script
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X');ga('send','pageview');
