@@ -12,7 +12,7 @@
     "@ibm/type": "^0.5.3",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
+    "debug": "~3.1.0",
     "express": "~4.16.2",
     "jade": "~1.11.0",
     "morgan": "~1.9.0",
