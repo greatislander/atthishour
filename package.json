@@ -9,7 +9,7 @@
     "lint:styles": "stylelint public/styles/*.css"
   },
   "dependencies": {
-    "@ibm/type": "^0.5.0",
+    "@ibm/type": "^0.5.3",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
