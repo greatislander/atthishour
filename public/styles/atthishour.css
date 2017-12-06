@@ -1,3 +1,10 @@
+:root {
+  --primary: #f48120;
+  --secondary: #faad3f;
+  --accent1: #aaa;
+  --accent2: #777;
+}
+
 body {
   font-family: "IBM Plex Sans", sans-serif;
 }
@@ -28,6 +35,16 @@ a {
   width: 640px;
   top: 0;
   left: 0;
+}
+
+.screen .layer {
+  width: 640px;
+  height: 480px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  background: transparent;
 }
 
 .screen footer {
