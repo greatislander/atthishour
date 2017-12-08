@@ -1,7 +1,10 @@
-/* global malarkey, moment, Papa, plyr */
+/* global plyr */
 
-import isBefore from "date-fns/is_before";
 import distanceInWordsStrict from "date-fns/distance_in_words_strict";
+import isBefore from "date-fns/is_before";
+import malarkey from "malarkey";
+import Papa from "papaparse";
+import plyr from "plyr";
 
 const tickerDelay = 120000;
 const tweetDelay = 90000;
