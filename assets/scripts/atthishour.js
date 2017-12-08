@@ -1,14 +1,20 @@
-/* global Papa, plyr, malarkey */
+/* global malarkey, moment, Papa, plyr */
+
+import isBefore from "date-fns/is_before";
+import distanceInWordsStrict from "date-fns/distance_in_words_strict";
+
+const tickerDelay = 120000;
+const tweetDelay = 90000;
+const showTime = "2017-12-17T19:30";
 
 function displayTicker(source) {
-  const delay = 120000;
   if (!source) return;
   Papa.parse(source, {
     download: true,
     complete: function(results) {
       const opts = {
         typeSpeed: 0,
-        pauseDelay: delay,
+        pauseDelay: tickerDelay,
       };
       const ticker = malarkey(document.querySelector(".ticker"), opts);
       let index = -1;
@@ -24,7 +30,6 @@ function displayTicker(source) {
 }
 
 function displayTwitter(source) {
-  const delay = 90000;
   if (!source) return;
   Papa.parse(source, {
     download: true,
@@ -35,7 +40,7 @@ function displayTwitter(source) {
       window.setInterval(function() {
         index = (index + 1) % results.data.length;
         insertTweet(results.data[index], tweets);
-      }, delay);
+      }, tweetDelay);
     },
   });
 }
@@ -55,6 +60,24 @@ function insertTweet(data, container) {
   container.insertBefore(tweet, container.firstChild);
 }
 
+function countDown() {
+  const countdown = document.querySelector(".countdown");
+  countdown.textContent =
+    "in " + distanceInWordsStrict(Date.now(), new Date(showTime));
+}
+
+function timedUpdate() {
+  countDown();
+  if (isBefore(new Date(), new Date(showTime))) {
+    setTimeout(timedUpdate, 1000);
+  } else {
+    const broadcast = document.querySelector(".broadcast");
+    const countdown = document.querySelector(".countdown");
+    broadcast.classList.add("broadcast--live");
+    countdown.textContent = "from the Halifax Courthouse";
+  }
+}
+
 plyr.setup();
 
 displayTicker(
@@ -64,3 +87,12 @@ displayTicker(
 displayTwitter(
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vSW55acOvnBDUnGKBIg7ELD-NKHydWOkWMbQAf0HqD6mpgUrcI2OJY1BH7vkh24k-0MzS0B2fmthqAG/pub?output=csv"
 );
+
+if (isBefore(new Date(), new Date(showTime))) {
+  timedUpdate();
+} else {
+  const broadcast = document.querySelector(".broadcast");
+  const countdown = document.querySelector(".countdown");
+  broadcast.classList.add("broadcast--live");
+  countdown.textContent = "from the Halifax Courthouse";
+}

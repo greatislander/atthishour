@@ -4,14 +4,10 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev":
-      "NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "watch":
-      "NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "hot":
-      "NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "production":
-      "NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "dev": "NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "hot": "NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "production": "NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "build": "npm run -s production",
     "lint": "npm run -s lint:scripts && npm run -s lint:styles",
     "lint:scripts": "eslint assets/scripts/*.js",
@@ -21,6 +17,7 @@
     "@ibm/type": "^0.5.3",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
+    "date-fns": "^1.29.0",
     "debug": "~3.1.0",
     "express": "~4.16.2",
     "jade": "~1.11.0",
@@ -63,7 +60,9 @@
       "ecmaVersion": 2017,
       "sourceType": "module"
     },
-    "plugins": ["import"],
+    "plugins": [
+      "import"
+    ],
     "settings": {
       "import/core-modules": [],
       "import/ignore": [
