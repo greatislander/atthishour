@@ -1,11 +1,12 @@
 :root {
-  --primary: #f48120;
-  --secondary: #faad3f;
-  --accent1: #aaa;
-  --accent2: #777;
+  --primary: #000;
+  --secondary: #d59b57;
+  --accent1: #373e3f;
+  --accent2: #5a4e47;
 }
 
 body {
+  background: var(--accent1);
   font-family: "IBM Plex Sans", sans-serif;
 }
 
@@ -20,26 +21,29 @@ a {
 .screen {
   position: relative;
   width: 960px;
-  height: 424px;
+  height: 476px;
 }
 
 .screen header {
   position: absolute;
   width: 640px;
-  top: 0;
+  height: 52px;
+  bottom: 64px;
   z-index: 1917;
+  background: var(--primary);
 }
 
 .screen .plyr {
   display: absolute;
   width: 640px;
+  height: 360px;
   top: 0;
   left: 0;
 }
 
 .screen .layer {
   width: 640px;
-  height: 480px;
+  height: 360px;
   position: absolute;
   top: 0;
   left: 0;
@@ -47,19 +51,41 @@ a {
   background: transparent;
 }
 
+.screen .layer .date {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+}
+
 .screen footer {
   position: absolute;
   width: 640px;
+  height: 64px;
   bottom: 0;
   z-index: 1917;
 }
 
 .screen aside {
+  background: var(--accent1);
   height: 424px;
   width: 320px;
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.tweet {
+  font-weight: 300;
+  padding: 0 1em;
+}
+
+.handle {
+  display: block;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  width: 100%;
+  padding-bottom: 0.5rem;
+  border-bottom: solid 2px #fff;
 }
 
 .ticker {
