@@ -14,8 +14,8 @@
       "NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "build": "npm run -s production",
     "lint": "npm run -s lint:scripts && npm run -s lint:styles",
-    "lint:scripts": "eslint public/scripts/*.js",
-    "lint:styles": "stylelint public/styles/*.css"
+    "lint:scripts": "eslint assets/scripts/*.js",
+    "lint:styles": "stylelint assets/styles/*.scss"
   },
   "dependencies": {
     "@ibm/type": "^0.5.3",
@@ -35,8 +35,10 @@
     "eslint-plugin-import": "*",
     "laravel-mix": "^1.7.2",
     "prettier": "~1.9.1",
+    "prettier-stylelint": "^0.4.2",
     "stylelint": "^8.3.1",
-    "stylelint-config-standard": "~18.0.0"
+    "stylelint-config-recommended-scss": "^3.0.0",
+    "stylelint-scss": "^2.2.0"
   },
   "eslintConfig": {
     "root": true,
@@ -83,32 +85,10 @@
     }
   },
   "stylelint": {
-    "extends": "stylelint-config-standard",
-    "rules": {
-      "no-empty-source": null,
-      "at-rule-no-unknown": [
-        true,
-        {
-          "ignoreAtRules": [
-            "extend",
-            "at-root",
-            "debug",
-            "warn",
-            "error",
-            "if",
-            "else",
-            "for",
-            "each",
-            "while",
-            "mixin",
-            "include",
-            "content",
-            "return",
-            "function"
-          ]
-        }
-      ]
-    }
+    "extends": [
+      "./node_modules/prettier-stylelint/config.js",
+      "stylelint-config-recommended-scss"
+    ]
   },
   "repository": {
     "type": "git",
