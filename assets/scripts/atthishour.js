@@ -1,6 +1,7 @@
 /* global plyr */
 
 import distanceInWordsStrict from "date-fns/distance_in_words_strict";
+import format from "date-fns/format";
 import isBefore from "date-fns/is_before";
 import malarkey from "malarkey";
 import Papa from "papaparse";
@@ -92,6 +93,7 @@ displayTwitter(
 );
 
 if (isBefore(new Date(), new Date(showTime))) {
+  console.log(format(new Date(), "MMMM Do, YYYY @ HH:mm")); // eslint-disable-line
   timedUpdate();
 } else {
   const broadcast = document.querySelector(".broadcast");
