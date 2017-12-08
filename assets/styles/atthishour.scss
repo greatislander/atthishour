@@ -1,13 +1,10 @@
 :root {
   --primary: #000;
-  /* --primary: #d87641; */
-  --secondary: #d59b57;
-  --accent1: #373e3f;
-  --accent2: #5a4e47;
+  --accent: #373e3f;
 }
 
 body {
-  background: var(--accent1);
+  background: var(--accent);
   font-family: "IBM Plex Sans", sans-serif;
 }
 
@@ -70,7 +67,7 @@ a {
 }
 
 .screen aside {
-  background: var(--accent1);
+  background: var(--accent);
   height: 424px;
   width: 320px;
   position: absolute;
