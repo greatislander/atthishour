@@ -1,12 +1,14 @@
 extends layout
 
 block content    
-  section.screen
-    header
-      h1.white.tr.i.ttu.pr3.pv2.mv0= title
-    div.layer
+  section.broadcast
+    header.flex.flex-row.justify-between.items-center.ph3
+      h1.white.order-2.tr.i.ttu.pv2.mv0= title
+      p.status.order-1.b LIVE IN 
+        span.countdown 7D 12H 25M
+    div.overlay
       p.date.bg-black.white.pa2 December, 1917
-    //- div(data-type="youtube" data-video-id="SxWKffqBjMM" data-plyr='{ "autoplay": true, "loop": true, "volume": 1, "controls": [] }')
+    div(data-type="youtube" data-video-id="SxWKffqBjMM" data-plyr='{ "autoplay": true, "loop": true, "volume": 1, "controls": [] }')
     aside.tweets.white
-    footer.h3.ph3.black.bg-white.flex.flex-column.justify-center
-      p.ticker.lh-copy.tc.ttu.f7
+    footer.ph2.white.bg-gray.flex.flex-column.justify-center
+      p.ticker.tl.ttu.f7.b

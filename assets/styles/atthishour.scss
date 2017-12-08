@@ -16,81 +16,102 @@ a {
   min-height: 100vh;
 }
 
-.screen {
+.broadcast {
   position: relative;
   width: 960px;
-  height: 476px;
-}
+  height: 452px;
 
-.screen header {
-  position: absolute;
-  width: 640px;
-  height: 52px;
-  bottom: 64px;
-  z-index: 1917;
-  background: var(--primary);
-}
+  header {
+    position: absolute;
+    width: 640px;
+    height: 52px;
+    bottom: 40px;
+    z-index: 1917;
+    background: var(--primary);
 
-.screen .plyr {
-  display: absolute;
-  width: 640px;
-  height: 360px;
-  top: 0;
-  left: 0;
-}
+    .status {
+      color: #fff;
+    }
+  }
 
-.screen .layer {
-  width: 640px;
-  height: 360px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 99999;
-  background: transparent;
-  background-image: url(/images/bars.svg);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
+  .overlay {
+    width: 640px;
+    height: 360px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    background: url(/images/bars.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
 
-.screen .layer .date {
-  position: absolute;
-  top: 0.5rem;
-  right: 1rem;
-}
+    .date {
+      position: absolute;
+      top: 0.5rem;
+      right: 1rem;
+    }
+  }
 
-.screen footer {
-  position: absolute;
-  width: 640px;
-  height: 64px;
-  bottom: 0;
-  z-index: 1917;
-}
+  .plyr {
+    display: absolute;
+    width: 640px;
+    height: 360px;
+    top: 0;
+    left: 0;
+  }
 
-.screen aside {
-  background: var(--accent);
-  height: 424px;
-  width: 320px;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
+  footer {
+    position: absolute;
+    width: 640px;
+    height: 40px;
+    bottom: 0;
+    z-index: 1917;
+  }
 
-.tweet {
-  font-weight: 300;
-  padding: 0 1em;
-}
+  aside {
+    background: var(--accent);
+    height: 452px;
+    width: 320px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    overflow: hidden;
+    &:after {
+      display: block;
+      content: "";
+      height: 452px;
+      width: 320px;
+      position: absolute;
+      bottom: 0;
+      box-shadow: inset 0px -20px 20px 0px rgba(55, 62, 63, 1);
+    }
 
-.handle {
-  display: block;
-  margin-bottom: 0.5em;
-  font-weight: 600;
-  width: 100%;
-  padding-bottom: 0.5rem;
-  border-bottom: solid 2px #fff;
-}
+    .tweet {
+      font-weight: 300;
+      padding: 0 1em;
 
-.ticker {
-  font-family: "IBM Plex Mono", monospace;
+      &__handle {
+        display: block;
+        margin-bottom: 0.5em;
+        font-weight: 600;
+        width: 100%;
+        padding-bottom: 0.5rem;
+        border-bottom: solid 2px #fff;
+      }
+    }
+  }
+
+  &--live {
+    header {
+      .status {
+        color: #f00;
+      }
+    }
+
+    .overlay {
+      background: transparent;
+    }
+  }
 }
 
 @media all and (orientation: portrait) {
