@@ -32,3 +32,6 @@ npm-debug.log
 # Mix assets
 public
 mix-manifest.json
+
+# VS Code
+.vscode
