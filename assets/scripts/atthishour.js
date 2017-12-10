@@ -1,15 +1,16 @@
+import addHours from "date-fns/add_hours";
 import distanceInWordsStrict from "date-fns/distance_in_words_strict";
 import format from "date-fns/format";
 import isBefore from "date-fns/is_before";
 import malarkey from "malarkey";
 import Papa from "papaparse";
 import plyr from "plyr";
-import subHours from "date-fns/sub_hours";
 
 const tickerDelay = 120000;
 const tweetDelay = 90000;
-const showTime = new Date(
-  document.querySelector("body").getAttribute("data-showtime")
+const showTime = addHours(
+  new Date(document.querySelector("body").getAttribute("data-showtime")),
+  4
 );
 
 function displayTicker(source) {
@@ -68,15 +69,17 @@ function insertTweet(data, container) {
 function insertAndStartLivestream() {
   let request = new XMLHttpRequest();
 
-  request.open("GET", "https://atthishour-streamdata.now.sh/data.json", true);
+  request.open("GET", "/data", true);
 
   request.onload = function() {
     const overlay = document.querySelector(".overlay");
     const player = document.createElement("div");
-    let id = "SxWKffqBjMM";
+    let id;
     if (request.status >= 200 && request.status < 400) {
       const data = JSON.parse(request.responseText);
-      id = data.id ? data.id : id;
+      id = data.id;
+    } else {
+      id = "SxWKffqBjMM";
     }
     player.classList.add("livestream");
     player.setAttribute("data-type", "youtube");
@@ -84,6 +87,7 @@ function insertAndStartLivestream() {
     overlay.parentNode.insertBefore(player, overlay.nextElementSibling);
 
     const players = plyr.setup(".livestream", {
+      autoplay: 1,
       volume: 1,
       controls: [],
     });
@@ -95,19 +99,19 @@ function insertAndStartLivestream() {
 
 function countDown() {
   const countdown = document.querySelector(".countdown");
-  countdown.textContent =
-    "in " + distanceInWordsStrict(subHours(new Date(), 4), showTime);
+  countdown.textContent = "in " + distanceInWordsStrict(Date.now(), showTime);
 }
 
 function timedUpdate() {
   countDown();
-  if (isBefore(subHours(new Date(), 4), showTime)) {
+  if (isBefore(Date.now(), showTime)) {
     setTimeout(timedUpdate, 1000);
   } else {
     const broadcast = document.querySelector(".broadcast");
     const countdown = document.querySelector(".countdown");
     broadcast.classList.add("broadcast--live");
     countdown.textContent = "from the Halifax Courthouse";
+    insertAndStartLivestream();
   }
 }
 
@@ -119,10 +123,10 @@ displayTwitter(
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vSW55acOvnBDUnGKBIg7ELD-NKHydWOkWMbQAf0HqD6mpgUrcI2OJY1BH7vkh24k-0MzS0B2fmthqAG/pub?output=csv"
 );
 
-console.log(format(subHours(new Date(), 4), "MMMM Do, YYYY @ HH:mm")); // eslint-disable-line
+console.log(format(Date.now(), "MMMM Do, YYYY @ HH:mm")); // eslint-disable-line
 console.log(format(showTime, "MMMM Do, YYYY @ HH:mm")); // eslint-disable-line
 
-if (isBefore(subHours(new Date(), 4), showTime)) {
+if (isBefore(Date.now(), showTime)) {
   timedUpdate();
 } else {
   const broadcast = document.querySelector(".broadcast");
