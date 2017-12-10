@@ -9,7 +9,7 @@ import plyr from "plyr";
 
 const tickerDelay = 120000;
 const tweetDelay = 90000;
-const showTime = "2017-12-17T19:30";
+const showTime = process.env.SHOWTIME ? process.env.SHOWTIME : "2017-12-17T19:30";
 
 function displayTicker(source) {
   if (!source) return;
