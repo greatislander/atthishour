@@ -16,7 +16,10 @@
     "lint": "npm run -s lint:scripts && npm run -s lint:styles",
     "lint:scripts": "eslint assets/scripts/*.js",
     "lint:styles": "stylelint assets/styles/*.scss",
-    "deploy:production": "now alias `now` atthishour.tv"
+    "deploy:staging":
+      "now alias $(now -e STREAM=$STREAM -e SHOWTIME=$SHOWTIME) atthishour.now.sh",
+    "deploy:production":
+      "now alias $(now -e STREAM=$STREAM -e SHOWTIME=$SHOWTIME) atthishour.tv"
   },
   "dependencies": {
     "@ibm/type": "^0.5.3",
