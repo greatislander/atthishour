@@ -1,15 +1,16 @@
-/* global plyr */
-
 import distanceInWordsStrict from "date-fns/distance_in_words_strict";
 import format from "date-fns/format";
 import isBefore from "date-fns/is_before";
 import malarkey from "malarkey";
 import Papa from "papaparse";
 import plyr from "plyr";
+import subHours from "date-fns/sub_hours";
 
 const tickerDelay = 120000;
 const tweetDelay = 90000;
-const showTime = document.querySelector("body").getAttribute("data-showtime");
+const showTime = new Date(
+  document.querySelector("body").getAttribute("data-showtime")
+);
 
 function displayTicker(source) {
   if (!source) return;
@@ -65,24 +66,42 @@ function insertTweet(data, container) {
 }
 
 function insertAndStartLivestream() {
-  const player = document.createElement("div");
-  player.setAttribute("data-type", "youtube");
-  player.setAttribute("data-video-id", "SxWKffqBjMM");
-  player.setAttribute(
-    "data-plyr",
-    '{ "autoplay": true, "loop": true, "volume": 1, "controls": [] }'
-  );
+  let request = new XMLHttpRequest();
+
+  request.open("GET", "https://atthishour-streamdata.now.sh/data.json", true);
+
+  request.onload = function() {
+    const overlay = document.querySelector(".overlay");
+    const player = document.createElement("div");
+    let id = "SxWKffqBjMM";
+    if (request.status >= 200 && request.status < 400) {
+      const data = JSON.parse(request.responseText);
+      id = data.id ? data.id : id;
+    }
+    player.classList.add("livestream");
+    player.setAttribute("data-type", "youtube");
+    player.setAttribute("data-video-id", id);
+    overlay.parentNode.insertBefore(player, overlay.nextElementSibling);
+
+    const players = plyr.setup(".livestream", {
+      volume: 1,
+      controls: [],
+    });
+    players[0].play();
+  };
+
+  request.send();
 }
 
 function countDown() {
   const countdown = document.querySelector(".countdown");
   countdown.textContent =
-    "in " + distanceInWordsStrict(Date.now(), new Date(showTime));
+    "in " + distanceInWordsStrict(subHours(new Date(), 4), showTime);
 }
 
 function timedUpdate() {
   countDown();
-  if (isBefore(new Date(), new Date(showTime))) {
+  if (isBefore(subHours(new Date(), 4), showTime)) {
     setTimeout(timedUpdate, 1000);
   } else {
     const broadcast = document.querySelector(".broadcast");
@@ -92,8 +111,6 @@ function timedUpdate() {
   }
 }
 
-plyr.setup();
-
 displayTicker(
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vSjOTdOXToGa8Ax-vnmv0T0XEhHobxJZ7xEHyrfqYU_e6349V0JisB0pOYGOnB3YnyEd-Ty76JmYh0B/pub?output=csv"
 );
@@ -102,12 +119,15 @@ displayTwitter(
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vSW55acOvnBDUnGKBIg7ELD-NKHydWOkWMbQAf0HqD6mpgUrcI2OJY1BH7vkh24k-0MzS0B2fmthqAG/pub?output=csv"
 );
 
-if (isBefore(new Date(), new Date(showTime))) {
-  console.log(format(new Date(), "MMMM Do, YYYY @ HH:mm")); // eslint-disable-line
+console.log(format(subHours(new Date(), 4), "MMMM Do, YYYY @ HH:mm")); // eslint-disable-line
+console.log(format(showTime, "MMMM Do, YYYY @ HH:mm")); // eslint-disable-line
+
+if (isBefore(subHours(new Date(), 4), showTime)) {
   timedUpdate();
 } else {
   const broadcast = document.querySelector(".broadcast");
   const countdown = document.querySelector(".countdown");
   broadcast.classList.add("broadcast--live");
   countdown.textContent = "from the Halifax Courthouse";
+  insertAndStartLivestream();
 }

@@ -15,7 +15,8 @@
     "build": "npm run -s production",
     "lint": "npm run -s lint:scripts && npm run -s lint:styles",
     "lint:scripts": "eslint assets/scripts/*.js",
-    "lint:styles": "stylelint assets/styles/*.scss"
+    "lint:styles": "stylelint assets/styles/*.scss",
+    "deploy:production": "now alias `now` atthishour.tv"
   },
   "dependencies": {
     "@ibm/type": "^0.5.3",
@@ -46,8 +47,7 @@
     "stylelint-scss": "^2.2.0"
   },
   "now": {
-    "name": "atthishour",
-    "alias": "atthishour"
+    "name": "atthishour"
   },
   "eslintConfig": {
     "root": true,
