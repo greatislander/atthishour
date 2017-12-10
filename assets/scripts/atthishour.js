@@ -9,7 +9,7 @@ import plyr from "plyr";
 
 const tickerDelay = 120000;
 const tweetDelay = 90000;
-const showTime = process.env.SHOWTIME ? process.env.SHOWTIME : "2017-12-17T19:30";
+const showTime = document.querySelector("body").getAttribute("data-showtime");
 
 function displayTicker(source) {
   if (!source) return;
@@ -62,6 +62,16 @@ function insertTweet(data, container) {
   tweet.appendChild(handle);
   tweet.appendChild(tweetContent);
   container.insertBefore(tweet, container.firstChild);
+}
+
+function insertAndStartLivestream() {
+  const player = document.createElement("div");
+  player.setAttribute("data-type", "youtube");
+  player.setAttribute("data-video-id", "SxWKffqBjMM");
+  player.setAttribute(
+    "data-plyr",
+    '{ "autoplay": true, "loop": true, "volume": 1, "controls": [] }'
+  );
 }
 
 function countDown() {
