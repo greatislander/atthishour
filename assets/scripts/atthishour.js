@@ -6,8 +6,8 @@ import malarkey from "malarkey";
 import Papa from "papaparse";
 import plyr from "plyr";
 
-const tickerDelay = 120000;
-const tweetDelay = 90000;
+const tickerDelay = 20000;
+const tweetDelay = 10000;
 const showTime = addHours(
   new Date(document.querySelector("body").getAttribute("data-showtime")),
   4
