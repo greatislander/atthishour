@@ -52,6 +52,7 @@ function displayTwitter(source) {
 }
 
 function insertTweet(data, container) {
+  const header = document.querySelector(".tweets h2");
   const tweet = document.createElement("p");
   const handle = document.createElement("span");
   const tweetContent = document.createTextNode(data[1]);
@@ -63,7 +64,8 @@ function insertTweet(data, container) {
   tweet.classList.add("fadeInLeft");
   tweet.appendChild(handle);
   tweet.appendChild(tweetContent);
-  container.insertBefore(tweet, container.firstChild);
+  header.parentNode.insertBefore(tweet, header.nextSibling);
+  container.insertAfter;
 }
 
 function insertAndStartLivestream() {

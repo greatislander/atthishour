@@ -91,6 +91,19 @@ a {
       box-shadow: inset 0px -20px 20px 0px rgba(55, 62, 63, 1);
     }
 
+    h2 {
+      font-weight: 300;
+      &::before {
+        display: inline-block;
+        content: "";
+        width: 2rem;
+        height: 2rem;
+        background: url(/images/kingfisher.svg);
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    }
+
     .tweet {
       font-weight: 300;
       padding: 0 1em;
@@ -117,6 +130,26 @@ a {
       background: transparent;
     }
   }
+}
+
+.colophon {
+  width: 100vw;
+}
+
+.credits {
+  .list li {
+    display: flex;
+    flex-direction: row;
+
+    .dotleading {
+      flex: 1;
+      margin: 0 0.25rem;
+      border-bottom: dotted 1px #fff;
+    }
+  }
+}
+
+.dotleading {
 }
 
 @media all and (orientation: portrait) {
