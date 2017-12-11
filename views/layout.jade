@@ -4,15 +4,21 @@ html.no-js(lang='en-ca')
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     title= title
-    meta(name='description', content='')
+    meta(name='description', content='A site-specific, verbatim theatre performance. In the room where it happened. On the days it took place. With the words that were spoken. 100 years ago.')
+    meta(name='author', content='Zuppa Theatre Co.')
     meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(property='og:type', content='video.other')
+    meta(property='og:title', content='At This Hour')
+    meta(property='og:description', content='A site-specific, verbatim theatre performance. In the room where it happened. On the days it took place. With the words that were spoken. 100 years ago.')
+    meta(property='og:url', content='https://atthishour.tv')
+    meta(property='og:image', content='/images/og.jpg')
     link(rel='stylesheet', href='/styles/atthishour.css')
     link(rel='stylesheet', href='https://unpkg.com/@ibm/type@0.5.3/css/ibm-type.min.css')
   body.white(data-showtime=locals.showtime)
     <!--[if lt IE 9]>
     p.browsehappy
       | You are using an <strong>outdated</strong> browser.
-      | Please <a href="http://browsehappy.com/">upgrade your browser</a>
+      | Please <a href='http://browsehappy.com/'>upgrade your browser</a>
       | to improve your experience.
     <![endif]-->
 
@@ -25,4 +31,4 @@ html.no-js(lang='en-ca')
     script.
       window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
       ga('create','UA-110930108-1','auto');ga('send','pageview')
-    script(src="https://www.google-analytics.com/analytics.js" async defer)
+    script(src='https://www.google-analytics.com/analytics.js' async defer)
