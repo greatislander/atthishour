@@ -7,7 +7,7 @@ import Papa from "papaparse";
 import plyr from "plyr";
 
 const tickerDelay = 20000;
-const tweetDelay = 10000;
+const tweetDelay = 15000;
 const showTime = addHours(
   new Date(document.querySelector("body").getAttribute("data-showtime")),
   4
