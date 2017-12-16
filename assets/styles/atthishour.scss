@@ -149,23 +149,49 @@ a {
   }
 }
 
-.dotleading {
-}
+.warning {
+  display: none;
 
-@media all and (orientation: portrait) {
-  .rotate {
-    display: block;
+  .tv::before {
+    display: inline-block;
+    content: "";
+    width: 4rem;
+    height: 4rem;
+    background: url(/images/tv.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 }
 
-@media screen and (min-width: 30em) {
-  // TODO
+.is-mobile {
+  .broadcast {
+    display: none;
+  }
+
+  .warning {
+    display: flex;
+    height: 100vh;
+  }
 }
 
-@media screen and (min-width: 30em) and (max-width: 60em) {
-  // TODO
+@media all and (orientation: portrait) {
+  .broadcast {
+    display: none;
+  }
+
+  .warning {
+    display: flex;
+    height: 100vh;
+  }
 }
 
-@media screen and (min-width: 60em) {
-  // TODO
+@media screen and (max-width: 60em) {
+  .broadcast {
+    display: none;
+  }
+
+  .warning {
+    display: flex;
+    height: 100vh;
+  }
 }

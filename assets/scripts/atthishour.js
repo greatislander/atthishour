@@ -1,6 +1,5 @@
 import addHours from "date-fns/add_hours";
 import distanceInWordsStrict from "date-fns/distance_in_words_strict";
-import format from "date-fns/format";
 import isBefore from "date-fns/is_before";
 import malarkey from "malarkey";
 import Papa from "papaparse";
@@ -117,6 +116,10 @@ function timedUpdate() {
   }
 }
 
+if (!!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform)) {
+  document.body.classList.add("is-mobile");
+}
+
 displayTicker(
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vSjOTdOXToGa8Ax-vnmv0T0XEhHobxJZ7xEHyrfqYU_e6349V0JisB0pOYGOnB3YnyEd-Ty76JmYh0B/pub?output=csv"
 );
@@ -124,9 +127,6 @@ displayTicker(
 displayTwitter(
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vSW55acOvnBDUnGKBIg7ELD-NKHydWOkWMbQAf0HqD6mpgUrcI2OJY1BH7vkh24k-0MzS0B2fmthqAG/pub?output=csv"
 );
-
-console.log(format(Date.now(), "MMMM Do, YYYY @ HH:mm")); // eslint-disable-line
-console.log(format(showTime, "MMMM Do, YYYY @ HH:mm")); // eslint-disable-line
 
 if (isBefore(Date.now(), showTime)) {
   timedUpdate();
