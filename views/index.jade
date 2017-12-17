@@ -12,6 +12,8 @@ block content
       h2.ph3.f4.flex.flex-row.items-centre.justify-start Commentary
     footer.ph2.white.bg-gray.flex.flex-column.justify-center
       p.ticker.tl.ttu.f7.b
+  div.controls.dn
+    button.playpause.playpause--play.input-reset.mt2.ba.b--white.pointer.grow.pv1.ph3.ttu.fw6 Play
 
 block colophon
   footer.colophon.absolute.bottom-0
@@ -19,4 +21,4 @@ block colophon
         a.link.silver(href="/credits/") Credits
 
 block scripts
-  script(src='/scripts/atthishour.js')
+  script(src='/scripts/atthishour.js?'+commit)

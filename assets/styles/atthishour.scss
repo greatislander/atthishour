@@ -132,6 +132,16 @@ a {
   }
 }
 
+.controls {
+  width: 960px;
+  padding-left: 240px;
+
+  button {
+    font-family: "IBM Plex Sans", sans-serif;
+    width: 160px;
+  }
+}
+
 .colophon {
   width: 100vw;
 }

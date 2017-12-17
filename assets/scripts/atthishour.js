@@ -11,6 +11,7 @@ const showTime = addHours(
   new Date(document.querySelector("body").getAttribute("data-showtime")),
   4
 );
+const playPause = document.querySelector(".playpause");
 
 function displayTicker(source) {
   if (!source) return;
@@ -74,6 +75,8 @@ function insertAndStartLivestream() {
 
   request.onload = function() {
     const overlay = document.querySelector(".overlay");
+    const controls = document.querySelector(".controls");
+    controls.classList.remove("dn");
     const player = document.createElement("div");
     let id;
     if (request.status >= 200 && request.status < 400) {
@@ -93,6 +96,11 @@ function insertAndStartLivestream() {
       controls: [],
     });
     players[0].play();
+    players[0].on("playing", function() {
+      playPause.textContent = "Pause";
+      playPause.classList.remove("playpause--play");
+      playPause.classList.add("playpause--pause");
+    });
   };
 
   request.send();
@@ -112,6 +120,7 @@ function timedUpdate() {
     const countdown = document.querySelector(".countdown");
     broadcast.classList.add("broadcast--live");
     countdown.textContent = "from the Halifax Courthouse";
+
     insertAndStartLivestream();
   }
 }
@@ -127,6 +136,21 @@ displayTicker(
 displayTwitter(
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vSW55acOvnBDUnGKBIg7ELD-NKHydWOkWMbQAf0HqD6mpgUrcI2OJY1BH7vkh24k-0MzS0B2fmthqAG/pub?output=csv"
 );
+
+playPause.addEventListener("click", function() {
+  const players = plyr.get();
+  if (playPause.classList.contains("playpause--play")) {
+    players[0].play();
+    playPause.textContent = "Pause";
+    playPause.classList.remove("playpause--play");
+    playPause.classList.add("playpause--pause");
+  } else if (playPause.classList.contains("playpause--pause")) {
+    players[0].pause();
+    playPause.textContent = "Play";
+    playPause.classList.remove("playpause--pause");
+    playPause.classList.add("playpause--play");
+  }
+});
 
 if (isBefore(Date.now(), showTime)) {
   timedUpdate();
