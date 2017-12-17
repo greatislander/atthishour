@@ -174,18 +174,7 @@ a {
   }
 }
 
-@media all and (orientation: portrait) {
-  .broadcast {
-    display: none;
-  }
-
-  .warning {
-    display: flex;
-    height: 100vh;
-  }
-}
-
-@media screen and (max-width: 60em) {
+@media screen and (max-width: 959px) {
   .broadcast {
     display: none;
   }
