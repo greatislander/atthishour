@@ -6,7 +6,7 @@ router.get("/", function(req, res) {
   commit = commit.replace("atthishour-", "").replace(".now.sh", "");
   const showTime = process.env.SHOWTIME
     ? process.env.SHOWTIME
-    : "2017-12-17T19:30Z";
+    : "2017-12-17T19:25Z";
   res.render("index", {
     title: "At This Hour",
     showtime: showTime,
