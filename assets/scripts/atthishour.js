@@ -92,7 +92,7 @@ function insertAndStartLivestream() {
 
     const players = plyr.setup(".livestream", {
       autoplay: 1,
-      volume: 1,
+      volume: 10,
       controls: [],
     });
     players[0].play();
